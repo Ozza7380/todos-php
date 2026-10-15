@@ -1,15 +1,20 @@
 <?php
+require 'config.php';
 $error = '';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'] ?? '';
+    $name = $_POST['name'] ?? '';
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
     $confirm = $_POST['konfirmasiPassword'] ?? '';
 
-    if (empty($username) || empty($email) || empty($password) || empty($confirm)) {
+    if (empty($name) || empty($email) || empty($password) || empty($confirm)) {
         $error = 'form wajib diisi!';
     } else {
-        
+        $stmt = $pdo->prepare("INSERT INTO users (nama, email, password) VALUES (?, ?, ?)");
+        $stmt->execute([$name, $email, $password]);
+        $id = $pdo->lastInsertId();
+        echo "Berhasil registrasi!";
     }
 }
 ?>
@@ -23,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <form action="" method="post">
-    <input type="text" name="username" placeholder="Username">
+    <input type="text" name="name" placeholder="Name">
     <input type="email" name="email" placeholder="Email">
     <input type="password" name="password" placeholder="Password">
     <input type="password" name="konfirmasiPassword" placeholder="Konfirmasi Password">
