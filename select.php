@@ -10,7 +10,7 @@ foreach ($users as $user) {
 
 //ambil satu
 $stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
-$stmt->execute([1]);
+$stmt->execute([0]);
 $user = $stmt->fetch();
-echo $user['nama']
+echo $user;
 ?>
