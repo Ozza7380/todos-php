@@ -10,6 +10,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($name) || empty($email) || empty($password) || empty($confirm)) {
         $error = 'Form wajib diisi!';
+    } elseif (strlen($password) < 6) {
+        $error = 'Password minimal 6!';
     } elseif ($confirm !== $password) {
         $error = 'Password harus sama!';
     } else {
