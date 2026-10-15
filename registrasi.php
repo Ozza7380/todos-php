@@ -9,7 +9,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $confirm = $_POST['konfirmasiPassword'] ?? '';
 
     if (empty($name) || empty($email) || empty($password) || empty($confirm)) {
-        $error = 'form wajib diisi!';
+        $error = 'Form wajib diisi!';
+    } elseif ($confirm !== $password) {
+        $error = 'Password harus sama!';
     } else {
         $stmt = $pdo->prepare("INSERT INTO users (nama, email, password) VALUES (?, ?, ?)");
         $stmt->execute([$name, $email, $password]);
