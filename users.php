@@ -20,7 +20,7 @@ $users = $stmt->fetchAll();
         </tr>
         <?php
         foreach ($users as $user) {
-            echo "<tr><td>{$user['nama']}</td><td>{$user['email']}</td><td><button><a href='http://localhost/todo-app/remove.php/?id={$user['id']}'>Hapus</a></button></td></tr>";
+            echo "<tr><td>{$user['nama']}</td><td>{$user['email']}</td><td><button onclick><a href='http://localhost/todo-app/remove.php/?id={$user['id']}'>Hapus</a></button></td></tr>";
         }
         ?>
     </table>

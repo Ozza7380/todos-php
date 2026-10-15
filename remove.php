@@ -5,8 +5,10 @@ require 'config.php';
         $id = htmlspecialchars($_GET['id']);
 $stmt = $pdo->prepare("DELETE FROM users WHERE id = ?");
 $stmt->execute([$id]);
-echo $stmt->rowCount() . " baris dihapus ";
+//echo $stmt->rowCount() . " baris dihapus ";
+header("Location: /todo-app/users.php");
+exit();
     } else {
-        echo "<p>Nama dan umur tidak ditemukan.</p>";
+        echo "<p>Id tidak ditemukan</p>";
     }
 ?>
